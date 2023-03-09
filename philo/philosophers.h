@@ -28,6 +28,6 @@ typedef struct s_philo
 
 }				t_philo;
 
-int cheack_argv(int argc,char **argv);
+int cheack_inic_argv(t_my_mutexs *philo, int argc,char **argv);
 
 #endif
