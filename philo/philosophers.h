@@ -18,16 +18,25 @@ typedef struct s_my_mutexs
 
 typedef struct s_philo
 {
-	t_my_mutexs	*my_mut;
+	t_my_mutexs	**my_mut;
+	size_t		count;
 	size_t		ip_philo;
-	int			time_philo;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			count_each_philo;
-
+	size_t		time_philo;
+	size_t		time_to_die;
+	size_t		time_to_eat;
+	size_t		time_sleep;
+	size_t		count_each_philo;
+	size_t		flag_count_each_philo;
 }				t_philo;
 
-int cheack_inic_argv(t_my_mutexs *philo, int argc,char **argv);
+int 	cheack_inic_argv(t_philo ***philo, int argc, char **argv);
+
+long	ft_atoi(const char *nptr);
+int		ft_isdigit(int a );
+int		ft_strlen(char *a );
+int		chack_number(char *mas);
+int		ft_strlen_zero(char *a , int i, int j, int f);
+
+int		initalizatia_mut(t_my_mutexs ***my_mut, size_t size, size_t i, size_t f);
 
 #endif
