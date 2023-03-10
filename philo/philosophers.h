@@ -12,12 +12,13 @@
 
 typedef struct s_my_mutexs
 {
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	fork;
 	int				flag_fork;
 }					t_my_mutexs;
 
 typedef struct s_philo
 {
+	pthread_t	my_thread;
 	t_my_mutexs	**my_mut;
 	size_t		count;
 	size_t		ip_philo;
@@ -38,5 +39,7 @@ int		chack_number(char *mas);
 int		ft_strlen_zero(char *a , int i, int j, int f);
 
 int		initalizatia_mut(t_my_mutexs ***my_mut, size_t size, size_t i, size_t f);
+
+int		start(t_philo **philo, size_t count, size_t i);
 
 #endif

@@ -28,13 +28,13 @@ int	main(int argc, char **argv)
 		return (0);
 	if (cheack_inic_argv(&philo, --argc, ++argv))
 		return (1);
-	print_filo(philo);
+	//print_filo(philo);
 	if (initalizatia_mut(&my_mut, philo[0]->count, 0, 0))
 		return (2);
 	while (++i < philo[0]->count)
 		philo[i]->my_mut = my_mut;
-	// if (start(&philo))
-	// 	return (4);
+	if (start(philo, philo[0]->count, 0))
+		return (4);
 	// delet_mut(&my_mut);
 	// free_philo(&philo);
 	return (0);
