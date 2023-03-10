@@ -9,6 +9,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_my_mutexs
 {
