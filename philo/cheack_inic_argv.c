@@ -74,20 +74,20 @@ int	malloc_philo(t_philo ***philo, size_t *mas, int i, int f)
 	return (0);
 }
 
-int cheack_inic_argv(t_philo ***philo, int argc, char **argv)
+int cheack_inic_argv(t_philo ***philo, int argc, char **argv, size_t *mas)
 {
-	size_t	mas[5];
-	int		i;
+	int	i;
 
 	i = 0;
+	*philo = 0;
 	if (cheack_argv(mas, argc, argv))
 		return (1);
-	*philo = malloc(mas[0] * sizeof(t_philo *));
-	if (!philo)
+	*philo = malloc((mas)[0] * sizeof(t_philo *));
+	if (!*philo)
 		return (2);
-	if (malloc_philo(philo, mas, 0, 0))
+	if (malloc_philo(philo, (mas), 0, 0))
 		return (2);
-	while (i < mas[0])
+	while (i < (mas)[0])
 	{
 		if (argc == 5)
 			(*philo)[i]->flag_count_each_philo = 1;

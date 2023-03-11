@@ -19,6 +19,7 @@ void	print_filo(t_philo **philo)
 
 int	main(int argc, char **argv)
 {
+	size_t		mas[5];
 	size_t		i;
 	t_philo		**philo;
 	t_my_mutexs	**my_mut;
@@ -26,16 +27,16 @@ int	main(int argc, char **argv)
 	i = -1;
 	if (argc < 5 || argc > 6)
 		return (0);
-	if (cheack_inic_argv(&philo, --argc, ++argv))
-		return (1);
+	if (cheack_inic_argv(&philo, --argc, ++argv, mas))
+		return (free_philo(&philo, mas[0]));
 	//print_filo(philo);
-	if (initalizatia_mut(&my_mut, philo[0]->count, 0, 0))
-		return (2);
+	if (initalizatia_mut(&my_mut, mas[0], 0, 0))
+		return (free_philo(&philo, mas[0]) || free_mut(&my_mut, mas[0]));
 	while (++i < philo[0]->count)
 		philo[i]->my_mut = my_mut;
-	if (start(philo, philo[0]->count, 0))
-		return (4);
-	// delet_mut(&my_mut);
-	// free_philo(&philo);
+	if (start(philo, mas[0], 0))
+	free_mut(&my_mut, mas[0]);
+	free_philo(&philo, mas[0]);
+	system("leaks pilo");
 	return (0);
 }

@@ -32,7 +32,7 @@ typedef struct s_philo
 	size_t		flag_count_each_philo;
 }				t_philo;
 
-int 	cheack_inic_argv(t_philo ***philo, int argc, char **argv);
+int 	cheack_inic_argv(t_philo ***philo, int argc, char **argv, size_t *mas);
 
 long	ft_atoi(const char *nptr);
 int		ft_isdigit(int a );
@@ -47,5 +47,8 @@ size_t	get_time_mls();
 int		philo_die(t_philo *philo);
 int		print_died(t_philo *philo);
 void	do_philo(t_philo *philo, size_t i);
+
+int		free_philo(t_philo ***phil, int size);
+int		free_mut(t_my_mutexs ***mut, int size);
 
 #endif
