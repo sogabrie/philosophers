@@ -15,6 +15,7 @@ typedef struct s_my_mutexs
 {
 	pthread_mutex_t	fork;
 	int				flag_fork;
+	int				flag_dead;
 }					t_my_mutexs;
 
 typedef struct s_philo
@@ -44,5 +45,7 @@ int		initalizatia_mut(t_my_mutexs ***my_mut, size_t size, size_t i, size_t f);
 int		start(t_philo **philo, size_t count, size_t i);
 size_t	get_time_mls();
 int		philo_die(t_philo *philo);
+int		print_died(t_philo *philo);
+void	do_philo(t_philo *philo, size_t i);
 
 #endif

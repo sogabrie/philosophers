@@ -1,24 +1,50 @@
 #include "philosophers.h"
 
-int	philo_die(t_philo *philo)
-{
-	if (philo->time_philo + philo->time_to_die > get_time_mls())
-	{
-		printf("dit\n");
-		return (1);
-	}
-	return (0);
-}
-
 size_t	get_time_mls()
 {
 	struct timeval	a;
 	size_t			time;
 
 	gettimeofday(&a, NULL);
-	//printf("sec = %zu usec = %d\n", a.tv_sec, a.tv_usec);
 	time = a.tv_sec * 1000;
 	time += a.tv_usec / 1000;
-	//printf("time = %zu\n", time);
 	return (time);
+}
+
+int	print_died(t_philo *philo)
+{
+	if (!philo->my_mut[0]->flag_dead)
+	{
+		philo->my_mut[0]->flag_dead = 1;
+		printf("%zu %zu died\n", get_time_mls(), philo->ip_philo);
+	}
+	return (1);
+}
+
+void	do_philo(t_philo *philo, size_t i)
+{
+	if (!philo->my_mut[0]->flag_dead)
+	{
+		if (i == 1)
+			printf("%zu %zu has taken a fork\n", get_time_mls(), philo->ip_philo);
+		else if (i == 2)
+			printf("%zu %zu is eating\n", get_time_mls(), philo->ip_philo);
+		else if (i == 3)
+			printf("%zu %zu is sleeping\n", get_time_mls(), philo->ip_philo);
+		else if (i == 4)
+			printf("%zu %zu is thinking\n", get_time_mls(), philo->ip_philo);
+	}
+	else
+	{
+		philo->time_philo = 0;
+	}
+}
+
+int	philo_die(t_philo *philo)
+{
+	if (philo->time_philo + philo->time_to_die < get_time_mls())
+	{
+		return (1);
+	}
+	return (0);
 }
