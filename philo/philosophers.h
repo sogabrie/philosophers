@@ -42,5 +42,7 @@ int		ft_strlen_zero(char *a , int i, int j, int f);
 int		initalizatia_mut(t_my_mutexs ***my_mut, size_t size, size_t i, size_t f);
 
 int		start(t_philo **philo, size_t count, size_t i);
+size_t	get_time_mls();
+int		philo_die(t_philo *philo);
 
 #endif

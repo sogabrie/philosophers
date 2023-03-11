@@ -43,13 +43,14 @@ int	cheack_argv(size_t	*mas, int argc, char **argv)
 		if (lo > 4294967295 || lo < 0)
 			return (1);
 		(mas)[i++] = (size_t)lo;
+		if (!(i - 1) && !mas[i - 1])
+			return (1);
 	}
 	return (0);
 }
 
 int	malloc_philo(t_philo ***philo, size_t *mas, int i, int f)
 {
-	//printf("mas[o] = %zu 1 = %zu 2 = %zu 3 = %zu 4 = %zu\n", mas[0], mas[1], mas[2], mas[3], mas[4]);
 	while (i < mas[0])
 	{
 		(*philo)[i] = malloc(sizeof(t_philo));
