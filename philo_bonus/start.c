@@ -88,8 +88,8 @@ void	*my_thread(void *ph)
 	i = 0;
 	philo = (t_philo *)ph;
 	philo->time_philo = get_time_mls();
-	if (!philo->my_mut[0]->start_time)
-		philo->my_mut[0]->start_time = get_time_mls();
+	if (!philo->my_mut->start_time)
+		philo->my_mut->start_time = get_time_mls();
 	while (!i)
 	{
 		i = time_philo(philo, 0, 0, 0);
@@ -99,8 +99,8 @@ void	*my_thread(void *ph)
 
 int	start(t_philo **philo, size_t count, size_t i)
 {
-	philo[0]->my_mut[0]->start_time = 0;
-	philo[0]->my_mut[0]->flag_dead = 0;
+	philo[0]->my_mut->start_time = 0;
+	philo[0]->my_mut->flag_dead = 0;
 	while (i < count)
 	{
 		pthread_create(&(philo[i]->my_thread), NULL, my_thread, philo[i]);
