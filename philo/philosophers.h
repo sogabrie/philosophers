@@ -28,6 +28,7 @@ typedef struct s_my_mutexs
 	pthread_mutex_t	fork;
 	int				flag_fork;
 	int				flag_dead;
+	size_t			start_time;
 }					t_my_mutexs;
 
 typedef struct s_philo

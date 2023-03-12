@@ -28,7 +28,7 @@ int	print_died(t_philo *philo)
 	if (!philo->my_mut[0]->flag_dead)
 	{
 		philo->my_mut[0]->flag_dead = 1;
-		printf("%zu %zu died\n", get_time_mls(), philo->ip_philo);
+		printf("%zu %zu died\n",  get_time_mls() - philo->my_mut[0]->start_time, philo->ip_philo);
 	}
 	return (1);
 }
@@ -38,14 +38,13 @@ void	do_philo(t_philo *philo, size_t i)
 	if (!philo->my_mut[0]->flag_dead)
 	{
 		if (i == 1)
-			printf("%zu %zu has taken a fork\n", \
-				get_time_mls(), philo->ip_philo);
+			printf("%zu %zu has taken a fork\n",  get_time_mls() - philo->my_mut[0]->start_time, philo->ip_philo);
 		else if (i == 2)
-			printf("%zu %zu is eating\n", get_time_mls(), philo->ip_philo);
+			printf("%zu %zu is eating\n",  get_time_mls() - philo->my_mut[0]->start_time, philo->ip_philo);
 		else if (i == 3)
-			printf("%zu %zu is sleeping\n", get_time_mls(), philo->ip_philo);
+			printf("%zu %zu is sleeping\n",  get_time_mls() - philo->my_mut[0]->start_time, philo->ip_philo);
 		else if (i == 4)
-			printf("%zu %zu is thinking\n", get_time_mls(), philo->ip_philo);
+			printf("%zu %zu is thinking\n",  get_time_mls() - philo->my_mut[0]->start_time, philo->ip_philo);
 	}
 	else
 	{
