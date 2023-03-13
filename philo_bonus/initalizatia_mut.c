@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:59 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/13 18:39:22 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/14 00:36:22 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	initalizatia_mut(t_my_mutexs **my_mut, size_t size)
 {
 	size_t i;
+	sem_t	*dead;
 
 	i = 0;
 	*my_mut = malloc(sizeof(t_my_mutexs));
@@ -26,5 +27,7 @@ int	initalizatia_mut(t_my_mutexs **my_mut, size_t size)
 		sem_post((*my_mut)->fork);
 		++i;
 	}
+	// (*my_mut)->flag_dead = sem_open("/sem_diad_", O_CREAT | O_EXCL , 777 );
+	// printf("sem_pos = %d  dead = %d fork = %d dead = %d\n", sem_post((*my_mut)->flag_dead), (*my_mut)->flag_dead , (*my_mut)->fork, dead);
 	return (0);
 }
