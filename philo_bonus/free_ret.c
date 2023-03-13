@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:52 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/13 17:36:25 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:34:39 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	free_philo(t_philo ***phil, int size)
 	i = 0;
 	if (!*phil)
 	{
-		//system("leaks pilo");
 		return (0);
 	}
 	while (i < size)
@@ -28,7 +27,6 @@ int	free_philo(t_philo ***phil, int size)
 		++i;
 	}
 	free(*phil);
-	//system("leaks pilo");
 	return (0);
 }
 
@@ -38,8 +36,8 @@ int	free_mut(t_my_mutexs **mut)
 
 	if (!mut)
 		return (0);
+	sem_close(((*mut)->fork));
 	sem_unlink("/my_sem_");
 	free(*mut);
-	//system("leaks pilo");
 	return (0);
 }

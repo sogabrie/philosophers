@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:30 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/13 17:32:09 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:36:11 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,11 @@
 
 int	cheack_eat_philo(t_philo *philo)
 {
-	printf("eat_3\n");
-// 	while (philo->my_mut->flag_fork < 2)
-// 	{
-// //		printf("%zu %zu       flag fork = %d\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo, philo->my_mut->flag_fork);
-// 		if (philo_die(philo))
-// 			return (print_died(philo));
-// 	}
-	//printf("%zu %zu       flag fork = %d\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo, philo->my_mut->flag_fork);
-	philo->my_mut->fork = sem_open("/my_sem", O_CREAT | O_EXCL);
-	printf("%zu %zu       sem_wait = %d\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo, philo->my_mut->fork);
 	while (sem_wait(philo->my_mut->fork) == -1)
 	{
-		//printf("%zu %zu       flag fork = %d\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo, philo->my_mut->flag_fork);
 		if (philo_die(philo))
 			return (print_died(philo));
 	}
-	printf("eat_4\n");
 	if (philo_die(philo) || philo->count == 1)
 		return (print_died(philo));
 	while (sem_wait(philo->my_mut->fork) == -1)
@@ -40,11 +28,7 @@ int	cheack_eat_philo(t_philo *philo)
 	}
 	if (philo_die(philo) || philo->count == 1)
 		return (print_died(philo));
-	// philo->my_mut->flag_fork -= 2;
 	do_philo(philo, 1);
-	//do_philo(philo, 1);
-	// sem_wait(philo->my_mut->fork);
-	// sem_wait(philo->my_mut->fork);
 	philo->time_philo = get_time_mls();
 	do_philo(philo, 2);
 	return (0);
@@ -60,8 +44,6 @@ int	cheack_eat_philo_2(t_philo *philo, size_t *f)
 	}
 	sem_post(philo->my_mut->fork);
 	sem_post(philo->my_mut->fork);
-	//philo->my_mut->flag_fork += 2;
-	sem_close(philo->my_mut->fork);
 	if (*f)
 		return (print_died(philo));
 	do_philo(philo, 3);
@@ -119,7 +101,6 @@ int	start(t_philo **philo, size_t count, size_t i)
 		}
 		if (!philo[i]->pid)
 		{
-			//printf("start i = %zu\n", i);
 			my_thread(philo[i]);
 			exit(0);
 		}
@@ -128,7 +109,6 @@ int	start(t_philo **philo, size_t count, size_t i)
 	i = 0;
 	while (i < count)
 	{
-		//printf("END i = %zu\n", i);
 		waitpid(philo[i]->pid, NULL, 0);
 		++i;
 	}

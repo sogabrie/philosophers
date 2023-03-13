@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:30 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/13 00:06:24 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:05:37 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,16 @@ int	cheack_eat_philo(t_philo *philo, size_t *i, size_t *i2)
 	philo->my_mut[*i]->flag_fork = 1;
 	philo->my_mut[*i2]->flag_fork = 1;
 	do_philo(philo, 1);
-	//do_philo(philo, 1);
 	pthread_mutex_lock(&philo->my_mut[*i]->fork);
 	pthread_mutex_lock(&philo->my_mut[*i2]->fork);
 	philo->time_philo = get_time_mls();
-	do_philo(philo, 2);
 	return (0);
 }
 
 int	cheack_eat_philo_2(t_philo *philo, size_t *i, size_t *i2, size_t *f)
 {
 	*f = 0;
+	do_philo(philo, 2);
 	while (get_time_mls() < philo->time_philo + philo->time_to_eat && !*f)
 	{
 		if (philo_die(philo))

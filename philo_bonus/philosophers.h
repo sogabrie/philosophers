@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:17 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/13 16:00:16 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:36:27 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 typedef struct s_my_mutexs
 {
 	sem_t	*fork;
-	int		flag_fork;
 	int		flag_dead;
 	size_t	start_time;
 }			t_my_mutexs;
