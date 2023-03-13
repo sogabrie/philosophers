@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:22 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/12 23:16:21 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:59:15 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ size_t	get_time_mls(void)
 	return (time);
 }
 
+int	philo_die(t_philo *philo)
+{
+	if (philo->time_philo + philo->time_to_die < get_time_mls())
+	{
+		return (1);
+	}
+	return (0);
+}
+
 int	print_died(t_philo *philo)
 {
 	if (!philo->my_mut[0]->flag_dead)
@@ -35,6 +44,11 @@ int	print_died(t_philo *philo)
 
 void	do_philo(t_philo *philo, size_t i)
 {
+	while (philo->my_mut[0]->flag_dead)
+	{
+		if (philo_die(philo))
+			return (print_died(philo));
+	}
 	if (!philo->my_mut[0]->flag_dead)
 	{
 		if (i == 1)
@@ -46,17 +60,6 @@ void	do_philo(t_philo *philo, size_t i)
 		else if (i == 4)
 			printf("%zu %zu is thinking\n",  get_time_mls() - philo->my_mut[0]->start_time, philo->ip_philo);
 	}
-	else
-	{
-		philo->time_philo = 0;
-	}
 }
 
-int	philo_die(t_philo *philo)
-{
-	if (philo->time_philo + philo->time_to_die < get_time_mls())
-	{
-		return (1);
-	}
-	return (0);
-}
+
