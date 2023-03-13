@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:59 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/12 20:42:56 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:03:23 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ int	initalizatia_mut(t_my_mutexs **my_mut, size_t size)
 	*my_mut = malloc(sizeof(t_my_mutexs));
 	if (!*my_mut)
 		return (2);
-	(*my_mut)->fork = sem_open("MY_SEM_", O_CREAT | O_EXCL);
-	printf(" sem = %s\n", (*my_mut)->fork);
+	(*my_mut)->fork = sem_open("/my_sem_", O_CREAT | O_EXCL , 777 );
+	//perror(strerror((*my_mut)->fork));
+	printf(" sem = %d\n", (*my_mut)->fork);
 	(*my_mut)->flag_fork = size;
-	while(i < size);
+	while(i < size)
 	{
-		sem_post((*my_mut)->fork);
+		printf("sem_pos = %d\n",sem_post((*my_mut)->fork));
 		++i;
 	}
 	sem_close((*my_mut)->fork);
