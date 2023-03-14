@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:30 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/13 23:49:04 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:52:49 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,26 @@
 
 int	cheack_eat_philo(t_philo *philo)
 {
+	pthread_t dead;
 	printf("eat_phio_1_0 = %zu\n" , philo->ip_philo);
-	while (sem_wait(philo->my_mut->fork) == -1)
-	{
-		if (philo_die(philo) || sem_wait(philo->my_mut->flag_dead) == -1)
-			return (print_died(philo));
-		sem_post(philo->my_mut->flag_dead);
-	}
-	printf("eat_phio_1_1 = %zu\n" , philo->ip_philo);
-	if (philo_die(philo) || philo->count == 1)
+	
+	sem_wait(philo->my_mut->fork);
+	//printf("eat_phio_1_1 = %zu\n" , philo->ip_philo);
+	if (philo_die(philo))
 		return (print_died(philo));
-	printf("eat_phio_1_2 = %zu\n" , philo->ip_philo);
-	while (sem_wait(philo->my_mut->fork) == -1)
-	{
-		if (philo_die(philo))
-			return (print_died(philo));
-	}
-	printf("eat_phio_1_3 = %zu\n" , philo->ip_philo);
-	if (philo_die(philo) || philo->count == 1)
+	//printf("eat_phio_1_2 = %zu\n" , philo->ip_philo);
+	
+	sem_wait(philo->my_mut->fork);
+	//printf("eat_phio_1_3 = %zu\n" , philo->ip_philo);
+	if (philo_die(philo))
 		return (print_died(philo));
-	printf("eat_phio_1_4 = %zu\n" , philo->ip_philo);
+	//printf("eat_phio_1_4 = %zu\n" , philo->ip_philo);
 	do_philo(philo, 1);
-	printf("eat_phio_1_5 = %zu\n" , philo->ip_philo);
+	//printf("eat_phio_1_5 = %zu\n" , philo->ip_philo);
 	philo->time_philo = get_time_mls();
-	printf("eat_phio_1_6 = %zu\n" , philo->ip_philo);
+	//printf("eat_phio_1_6 = %zu\n" , philo->ip_philo);
 	do_philo(philo, 2);
-	printf("eat_phio_1_7 = %zu\n" , philo->ip_philo);
+	//printf("eat_phio_1_7 = %zu\n" , philo->ip_philo);
 	return (0);
 }
 
@@ -97,8 +91,7 @@ void	my_thread(t_philo	*philo)
 
 	i = 0;
 	philo->time_philo = get_time_mls();
-	if (!philo->my_mut->start_time)
-		philo->my_mut->start_time = get_time_mls();
+	philo->my_mut->start_time = get_time_mls();
 	while (!i)
 	{
 		i = time_philo(philo, 0);

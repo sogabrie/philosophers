@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:22 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/14 00:41:05 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:37:01 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,28 @@ size_t	get_time_mls(void)
 
 int	print_died(t_philo *philo)
 {
-
-	if (sem_wait(philo->my_mut->flag_dead) != -1)
-	{
-		printf("%zu %zu died\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
-	}
+	printf("%zu %zu died\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
 	return (1);
 }
 
-void	do_philo(t_philo *philo, size_t i)
+int	do_philo(t_philo *philo, size_t i)
 {
-		if (i == 1)
-			printf("%zu %zu has taken a fork\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
-		else if (i == 2)
-			printf("%zu %zu is eating\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
-		else if (i == 3)
-			printf("%zu %zu is sleeping\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
-		else if (i == 4)
-			printf("%zu %zu is thinking\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
+	if (i == 1)
+		printf("%zu %zu has taken a fork\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
+	else if (i == 2)
+		printf("%zu %zu is eating\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
+	else if (i == 3)
+		printf("%zu %zu is sleeping\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
+	else if (i == 4)
+		printf("%zu %zu is thinking\n",  get_time_mls() - philo->my_mut->start_time, philo->ip_philo);
+	sem_post(philo->my_mut->flag_dead);
+	return (0);
 }
 
 int	philo_die(t_philo *philo)
-{
-	int i = 0;
-	
-	if (sem_wait(philo->my_mut->fork) == -1)
-		return (1);
-	else
-		sem_post(philo->my_mut->fork);
+{	
 	if (philo->time_philo + philo->time_to_die < get_time_mls())
 	{
-		while (sem_wait(philo->my_mut->fork) == 0)
-			++i;
 		return (1);
 	}
 	return (0);
