@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:17 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/14 16:22:59 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:54:59 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ size_t	get_time_mls(void);
 int		philo_die(t_philo *philo);
 int		print_died(t_philo *philo);
 int		do_philo(t_philo *philo, size_t i);
+void	*chech_diad(void *philo);
+
+void	*sleep_died(void *ph);
 
 int		free_philo(t_philo ***phil, int size);
 int		free_mut(t_my_mutexs **mut);

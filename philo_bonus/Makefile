@@ -1,5 +1,5 @@
 SRCS			=	philosophers.c cheack_inic_argv.c cheack_inic_argv_utils.c \
-					initalizatia_mut.c start.c start_utils.c free_ret.c
+					initalizatia_mut.c start.c start_utils.c free_ret.c start_utils_2.c
 
 OBJS			= $(SRCS:.c=.o)
 
