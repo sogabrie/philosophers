@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:22 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/17 19:10:38 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:05:13 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	philo_die(t_philo *philo)
 
 void	do_philo(t_philo *philo, size_t i)
 {
-	sem_wait(philo->my_mut->flag_dead);
+	sem_wait(philo->my_mut->flag_print);
 	if (i == 1)
 		printf("%zu %zu has taken a fork\n", get_time_mls() \
 				- philo->my_mut->start_time, philo->ip_philo);
@@ -70,5 +70,5 @@ void	do_philo(t_philo *philo, size_t i)
 				philo->my_mut->start_time, philo->ip_philo);
 	}
 	if (i != 5)
-		sem_post(philo->my_mut->flag_dead);
+		sem_post(philo->my_mut->flag_print);
 }

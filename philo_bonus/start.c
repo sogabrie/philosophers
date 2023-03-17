@@ -6,13 +6,13 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:30 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/17 19:54:55 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:06:06 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	cheack_eat_philo(t_philo *philo, size_t *i, size_t *i2)
+void	cheack_eat_philo(t_philo *philo)
 {
 	// if (philo_die(philo))
 	// 	return (print_died(philo));
@@ -21,10 +21,9 @@ int	cheack_eat_philo(t_philo *philo, size_t *i, size_t *i2)
 	sem_wait(philo->my_mut->fork);
 	do_philo(philo, 1);
 	philo->time_philo = get_time_mls();
-	return (0);
 }
 
-int	cheack_eat_philo_2(t_philo *philo, size_t *i, size_t *i2, size_t *f)
+void	cheack_eat_philo_2(t_philo *philo)
 {
 	do_philo(philo, 2);
 	usleep(philo->time_to_eat * 1000);
@@ -47,10 +46,10 @@ int	cheack_eat_philo_2(t_philo *philo, size_t *i, size_t *i2, size_t *f)
 	// }
 }
 
-void	time_philo(t_philo *philo, size_t i, size_t i2, size_t f)
+void	time_philo(t_philo *philo)
 {
-	cheack_eat_philo(philo, &i, &i2);
-	cheack_eat_philo_2(philo, &i, &i2, &f);
+	cheack_eat_philo(philo);
+	cheack_eat_philo_2(philo);
 	// if (philo_die(philo))
 	// 	return (print_died(philo));
 	do_philo(philo, 4);
@@ -73,7 +72,7 @@ void	my_thread(t_philo *philo)
 	pthread_detach(tr);
 	while (1)
 	{
-		time_philo(philo, 0, 0, 0);
+		time_philo(philo);
 	}
 }
 
@@ -90,16 +89,17 @@ int	start(t_philo **philo, size_t count, size_t i)
 		}
 		if (!philo[i]->pid)
 		{
-			my_proces(philo[i]);
+			my_thread(philo[i]);
 			exit(0);
 		}
 		++i;
 	}
 	sem_wait(philo[0]->my_mut->flag_dead);
+	printf("start_10\n");
 	i = 0;
 	while (i < count)
 	{
-		kill(philo[i]->pid, NULL, 0);
+		kill(philo[i]->pid, SIGTERM);
 		++i;
 	}
 	return (0);
