@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:30 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/17 20:06:06 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:48:28 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,18 @@ int	start(t_philo **philo, size_t count, size_t i)
 	while (i < count)
 	{
 		philo[i]->pid = fork();
-		if (philo[i]->pid == -1)
-		{
-			exit(2);
-		}
+		// if (philo[i]->pid == -1)
+		// {
+		// 	exit(2);
+		// }
 		if (!philo[i]->pid)
 		{
 			my_thread(philo[i]);
-			exit(0);
+			//exit(0);
 		}
 		++i;
 	}
+	//usleep(10000000);
 	sem_wait(philo[0]->my_mut->flag_dead);
 	printf("start_10\n");
 	i = 0;

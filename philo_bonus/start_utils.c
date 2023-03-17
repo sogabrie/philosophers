@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:22 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/17 20:05:13 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:48:50 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ void	*check_died(void *pt)
 	philo = (t_philo *)pt;
 	while (1)
 	{
+		// printf("dies_4\n");
 		if (philo_die(philo))
 		{
+			printf("dies_5\n");
 			do_philo(philo, 5);
 			sem_post(philo->my_mut->flag_dead);
+			break ;
 		}
 	}
 	return (0);
