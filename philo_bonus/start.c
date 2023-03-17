@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:30 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/17 20:48:28 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:55:10 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	start(t_philo **philo, size_t count, size_t i)
 		}
 		++i;
 	}
-	//usleep(10000000);
+	usleep(10000000);
 	sem_wait(philo[0]->my_mut->flag_dead);
 	printf("start_10\n");
 	i = 0;

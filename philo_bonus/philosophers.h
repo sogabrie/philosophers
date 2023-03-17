@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:17 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/17 20:00:45 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:20:36 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_philo
 {
 	pid_t		pid;
 	t_my_mutexs	*my_mut;
-	size_t		flag_dead;
 	size_t		count;
 	size_t		ip_philo;
 	size_t		time_philo;
