@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:52 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/14 00:25:36 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:10:06 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int	free_mut(t_my_mutexs **mut)
 		return (0);
 	sem_close(((*mut)->fork));
 	sem_close(((*mut)->flag_dead));
+	sem_close(((*mut)->flag_print));
 	sem_unlink("/my_sem_");
 	sem_unlink("/sem_diad_");
+	sem_unlink("/sem_print_");
 	free(*mut);
 	return (0);
 }

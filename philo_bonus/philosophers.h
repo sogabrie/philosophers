@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:17 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/16 16:58:10 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:10:54 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_my_mutexs
 {
 	sem_t	*fork;
 	sem_t	*flag_dead;
+	sem_t	*flag_print;
 	size_t	start_time;
 }			t_my_mutexs;
 
@@ -59,11 +60,8 @@ int		initalizatia_mut(t_my_mutexs **my_mut, size_t size);
 int		start(t_philo **philo, size_t count, size_t i);
 size_t	get_time_mls(void);
 int		philo_die(t_philo *philo);
-int		print_died(t_philo *philo);
-int		do_philo(t_philo *philo, size_t i);
-void	*chech_diad(void *philo);
-
-void	*sleep_died(void *ph);
+void	do_philo(t_philo *philo, size_t i);
+void	*check_died(void *pt);
 
 int		free_philo(t_philo ***phil, int size);
 int		free_mut(t_my_mutexs **mut);
