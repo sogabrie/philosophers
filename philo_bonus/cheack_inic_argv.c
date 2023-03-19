@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:34 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/12 23:14:15 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/19 16:22:27 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ int	malloc_philo(t_philo ***philo, size_t *mas, int i, int f)
 			(*philo)[i]->time_to_eat = mas[2];
 			(*philo)[i]->time_sleep = mas[3];
 			(*philo)[i]->count_each_philo = mas[4];
+			// printf("count = %zu\n", (*philo)[i]->count);
+			// printf("ip_philo  = %zu\n", (*philo)[i]->ip_philo);
+			// printf("time_to_die = %zu\n", (*philo)[i]->time_to_die);
+			// printf("time_to_eat = %zu\n", (*philo)[i]->time_to_eat);
+			// printf("time_sleep = %zu\n", (*philo)[i]->time_sleep);
+			// printf("count_each_philo = %zu\n", (*philo)[i]->count_each_philo);
 		}
 		++i;
 	}
