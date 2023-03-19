@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/12 20:38:52 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/19 19:09:06 by sogabrie         ###   ########.fr       */
+/*   Created: 2023/03/19 19:48:53 by sogabrie          #+#    #+#             */
+/*   Updated: 2023/03/19 19:54:37 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	free_philo(t_philo ***phil, int size)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!*phil)
@@ -32,8 +32,6 @@ int	free_philo(t_philo ***phil, int size)
 
 int	free_mut(t_my_mutexs *mut)
 {
-	int	i;
-
 	sem_close(((*mut).fork));
 	sem_close(((*mut).flag_dead));
 	sem_close(((*mut).flag_print));
@@ -43,34 +41,20 @@ int	free_mut(t_my_mutexs *mut)
 	return (0);
 }
 
-// void	free_exit(t_philo ***phil)
-// {
-// 	printf("free_exit_0\n");
-// 	free_mut((*phil)[0]->my_mut);
-// 	free_philo(phil, (*phil)[0]->count);
-// 	exit(0);
-// }
-
 void	*cheack_free(void *pt)
 {
 	size_t	i;
-	t_philo **philo;
-	
+	t_philo	**philo;
+
 	philo = ((t_philo **)pt);
 	i = 0;
-	// printf("cheack_free_5\n");
-	// printf("count = %zu free = %zu \n", (philo[0]->count), philo[0]->flag_free);
 	while (i < philo[0]->count)
 	{
-		// printf("cheack_free_6\n");
 		waitpid(philo[i]->pid, NULL, 0);
 		++i;
 	}
-	// printf("cheack_free_10\n");
-	//printf("count = %zu free = %zu \n", (philo[0]->count), philo[0]->flag_free);
 	if (!philo[0]->flag_free)
 	{
-		// free_exit(&philo);
 		sem_post(philo[0]->my_mut->flag_dead);
 	}
 	return (NULL);

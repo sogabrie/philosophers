@@ -5,16 +5,15 @@ OBJS			= $(SRCS:.c=.o)
 
 CC				= cc
 RM				= rm -f
-#CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror
 
 NAME			= philo
 
 
-all:			$(NAME) Makefile
+all:			$(NAME) Makefile philosophers.h
 
 $(NAME):		$(OBJS)
-#				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-				$(CC) $(OBJS) -o $(NAME)
+				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 				$(RM) $(OBJS)

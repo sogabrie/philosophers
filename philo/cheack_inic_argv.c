@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:34 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/12 23:14:15 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:43:09 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ long	ft_atoi(const char *nptr)
 
 int	cheack_argv(size_t	*mas, int argc, char **argv)
 {
-	size_t	i;
+	int		i;
 	long	lo;
 
 	i = 0;
@@ -61,7 +61,7 @@ int	cheack_argv(size_t	*mas, int argc, char **argv)
 	return (0);
 }
 
-int	malloc_philo(t_philo ***philo, size_t *mas, int i, int f)
+int	malloc_philo(t_philo ***philo, size_t *mas, size_t i, int f)
 {
 	while (i < mas[0])
 	{
@@ -87,7 +87,7 @@ int	malloc_philo(t_philo ***philo, size_t *mas, int i, int f)
 
 int	cheack_inic_argv(t_philo ***philo, int argc, char **argv, size_t *mas)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	*philo = 0;

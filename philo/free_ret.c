@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:52 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/13 00:08:53 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:43:45 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	free_philo(t_philo ***phil, int size)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!*phil)
 	{
-		//system("leaks pilo");
 		return (0);
 	}
 	while (i < size)
@@ -28,7 +27,6 @@ int	free_philo(t_philo ***phil, int size)
 		++i;
 	}
 	free(*phil);
-	//system("leaks pilo");
 	return (0);
 }
 
@@ -39,7 +37,6 @@ int	free_mut(t_my_mutexs ***mut, int size)
 	i = 0;
 	if (!*mut)
 	{
-		//system("leaks pilo");
 		return (0);
 	}
 	while (i < size)
@@ -49,6 +46,5 @@ int	free_mut(t_my_mutexs ***mut, int size)
 		++i;
 	}
 	free(*mut);
-	//system("leaks pilo");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:10 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/13 22:04:22 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:34:05 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int	main(int argc, char **argv)
 	start(philo, mas[0], 0);
 	free_mut(&my_mut, mas[0]);
 	free_philo(&philo, mas[0]);
-	//system("leaks pilo");
 	return (0);
 }

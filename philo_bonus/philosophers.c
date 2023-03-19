@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/12 20:39:10 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/19 19:08:50 by sogabrie         ###   ########.fr       */
+/*   Created: 2023/03/19 19:49:06 by sogabrie          #+#    #+#             */
+/*   Updated: 2023/03/19 19:51:50 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	main(int argc, char **argv)
 
 	i = -1;
 	if (argc < 5 || argc > 6)
-		return (0);
+		return (printf("wrong number of arguments or wrong arguments\n"));
 	if (cheack_inic_argv(&philo, --argc, ++argv, mas))
-		return (free_philo(&philo, mas[0]));
+		return (free_philo(&philo, mas[0]) || \
+		printf("wrong number of arguments or wrong arguments\n"));
 	if (initalizatia_mut(&my_mut, mas[0]))
 		return (free_philo(&philo, mas[0]) || free_mut(&my_mut));
 	while (++i < philo[0]->count)
@@ -31,6 +32,5 @@ int	main(int argc, char **argv)
 	start(philo, mas[0], 0);
 	free_mut(philo[0]->my_mut);
 	free_philo(&philo, philo[0]->count);
-	//system("leaks philo_bonus");
 	return (0);
 }
