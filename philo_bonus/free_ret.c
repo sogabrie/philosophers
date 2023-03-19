@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:52 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/19 18:40:16 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:09:06 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,22 @@ int	free_mut(t_my_mutexs *mut)
 {
 	int	i;
 
-	// if (!*mut)
-	// 	return (0);
 	sem_close(((*mut).fork));
 	sem_close(((*mut).flag_dead));
 	sem_close(((*mut).flag_print));
 	sem_unlink("/my_sem_");
 	sem_unlink("/sem_diad_");
 	sem_unlink("/sem_print_");
-	//free(*mut);
 	return (0);
 }
 
-void	free_exit(t_philo ***phil)
-{
-	printf("free_exit_0\n");
-	free_mut((*phil)[0]->my_mut);
-	free_philo(phil, (*phil)[0]->count);
-	exit(0);
-}
+// void	free_exit(t_philo ***phil)
+// {
+// 	printf("free_exit_0\n");
+// 	free_mut((*phil)[0]->my_mut);
+// 	free_philo(phil, (*phil)[0]->count);
+// 	exit(0);
+// }
 
 void	*cheack_free(void *pt)
 {
@@ -70,7 +67,7 @@ void	*cheack_free(void *pt)
 		++i;
 	}
 	// printf("cheack_free_10\n");
-	printf("count = %zu free = %zu \n", (philo[0]->count), philo[0]->flag_free);
+	//printf("count = %zu free = %zu \n", (philo[0]->count), philo[0]->flag_free);
 	if (!philo[0]->flag_free)
 	{
 		// free_exit(&philo);

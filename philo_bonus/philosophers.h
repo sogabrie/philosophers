@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:17 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/19 18:19:14 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:09:38 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	*check_died(void *pt);
 
 int		free_philo(t_philo ***phil, int size);
 int		free_mut(t_my_mutexs *mut);
-void	free_exit(t_philo ***phil);
+//void	free_exit(t_philo ***phil);
 void	*cheack_free(void *pt);
 
 #endif

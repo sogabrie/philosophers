@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:10 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/19 18:01:38 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:08:50 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(int argc, char **argv)
 	while (++i < philo[0]->count)
 		philo[i]->my_mut = &my_mut;
 	start(philo, mas[0], 0);
+	free_mut(philo[0]->my_mut);
+	free_philo(&philo, philo[0]->count);
 	//system("leaks philo_bonus");
 	return (0);
 }

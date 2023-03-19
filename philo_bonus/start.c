@@ -6,7 +6,7 @@
 /*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:39:30 by sogabrie          #+#    #+#             */
-/*   Updated: 2023/03/19 18:35:21 by sogabrie         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:10:20 by sogabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,12 @@ void	start(t_philo **philo, size_t count, size_t i)
 	//printf("start_9\n");
 	sem_wait(philo[0]->my_mut->flag_dead);
 	philo[0]->flag_free = 1;
-	printf("start_10\n");
+	// printf("start_10\n");
 	i = 0;
 	while (i < count)
 	{
 		kill(philo[i]->pid, SIGTERM);
 		++i;
 	}
-	free_exit(&philo);
+	//free_exit(&philo);
 }
